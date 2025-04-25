@@ -11,7 +11,7 @@ local settings = {
     animations = {
         left = "10480796021",
         right = "10480793962",
-    }
+    },
 
     easing = {
         Enum.EasingStyle.Cubic,
