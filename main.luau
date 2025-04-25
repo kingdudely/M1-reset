@@ -1,5 +1,4 @@
 pcall(function()
-    -- print(getgenv().fakeDash)
     getgenv().fakeDash:Disconnect()
     getgenv().fakeDash = nil
 end)
@@ -56,7 +55,7 @@ getgenv().fakeDash = UserInputService.InputBegan:Connect(function(input, gamePro
                 GameSettings.RotationType = Enum.RotationType.CameraRelative
 
                 local direction = math.sign(sideMovement)
-                play(direction == -1 and settings.animations.left or settings.animations.right) -- -1 = left, 1 = right
+                play(direction == -1 and settings.animations.left or settings.animations.right)
 
                 local ticked, elapsed = tick(), 0
                 local lastEasingValue = 0
@@ -78,7 +77,6 @@ getgenv().fakeDash = UserInputService.InputBegan:Connect(function(input, gamePro
 
                     task.wait()
                 end
-
 
                 GameSettings.RotationType = RotationType
             end
