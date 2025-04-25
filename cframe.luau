@@ -19,7 +19,6 @@ local settings = {
     },
 }
 
-local GameSettings = UserSettings().GameSettings
 local CurrentCamera = workspace.CurrentCamera
 
 local Players = game:GetService("Players")
@@ -47,13 +46,10 @@ getgenv().fakeDash = UserInputService.InputBegan:Connect(function(input, gamePro
 	if not gameProcessed then
         if input.KeyCode == Enum.KeyCode[settings.key:upper()] then
             local MoveDirection = Humanoid.MoveDirection
-            local RightVector = CurrentCamera.CFrame.RightVector
-            local sideMovement = MoveDirection:Dot(RightVector)
+            local CameraCFrame = CurrentCamera.CFrame
+            local sideMovement = MoveDirection:Dot(CameraCFrame.RightVector)
 
             if math.abs(sideMovement) >= 0.5 then
-                local RotationType = GameSettings.RotationType
-                GameSettings.RotationType = Enum.RotationType.CameraRelative
-
                 local direction = math.sign(sideMovement)
                 play(direction == -1 and settings.animations.left or settings.animations.right)
 
@@ -62,23 +58,25 @@ getgenv().fakeDash = UserInputService.InputBegan:Connect(function(input, gamePro
 
                 while elapsed < settings.duration do
                     elapsed = tick() - ticked
+                    CameraCFrame = CurrentCamera.CFrame
+
                     local alpha = math.clamp(elapsed / settings.duration, 0, 1)
                     local easingValue = TweenService:GetValue(alpha, unpack(settings.easing))
 
                     local deltaEasing = easingValue - lastEasingValue
                     lastEasingValue = easingValue
 
-                    local RightVector = CurrentCamera.CFrame.RightVector
-                    local directionVector = RightVector * direction
+                    local dashDirection = CameraCFrame.RightVector * direction
+                    local distance = settings.distance * deltaEasing
 
-                    local frameDistance = settings.distance * deltaEasing
+                    local LookVector = CameraCFrame.LookVector
+                    LookVector = Vector3.new(LookVector.X, 0, LookVector.Z)
 
-                    HumanoidRootPart.CFrame += directionVector * frameDistance
+                    local position = HumanoidRootPart.Position + dashDirection * distance
+                    HumanoidRootPart.CFrame = CFrame.lookAt(position, position + LookVector)
 
                     task.wait()
                 end
-
-                GameSettings.RotationType = RotationType
             end
         end
     end
