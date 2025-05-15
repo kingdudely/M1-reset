@@ -5,7 +5,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/kingdudely/M1-reset/m
 
 # How to get side dash animations by yourself
 If you want to get the side dash animations in your game:
+
+---
+
 1. Go to the ROBLOX console by either typing `/console` in chat, or just click on the `F9` key.
+
+---
+
 2. Now, side dash and then execute this immediately (you have to run this for both left and right side dashes):
 ```luau
 local Players = game:GetService("Players")
@@ -17,7 +23,12 @@ for _, track in Animator:GetPlayingAnimationTracks() do
     print(track.Animation.AnimationId)
 end
 ```
-3. You will see something like `rbxassetid://...` in the console. This is an **Animation ID**. Copy the numbers. To check if it is the side dash animation, just run this code and replace the `NUMBER` in `local id = NUMBER` with your number.
+
+---
+
+3. You will see something like `rbxassetid://...` in the console. This is an **Animation ID**. Copy the numbers.
+
+To check if it is the side dash animation, just run this code and replace the `NUMBER` in `local id = NUMBER` with your number.
 ```luau
 local id = NUMBER
 
@@ -41,11 +52,21 @@ end
 
 play(id)
 ```
-5. Now, run
+
+---
+
+4. Now, run
 ```luau
 setclipboard(game.GameId)
 ```
-You might need to wait a bit before it copies to your clipboard. This is your **Game ID**.
+You might need to wait a bit before it copies to your clipboard.
+If it doesn't copy anything after a minute or so, just run
+```luau
+print(game.GameId)
+```
+And manually copy the numbers. This is your **Game ID**.
+
+---
 
 5. Now, go into the M1 reset code and edit the thing in between the brackets of
 ```luau
@@ -53,6 +74,7 @@ local animations = {
     ...
 }
 ```
+
 The format is:
 ```luau
 local animations = {
@@ -64,4 +86,7 @@ local animations = {
     ...
 }
 ```
+
+---
+
 And you're done!
