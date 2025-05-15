@@ -1,3 +1,8 @@
+# Loadstring
+```luau
+loadstring(game:HttpGet("https://raw.githubusercontent.com/kingdudely/M1-reset/main/main.luau"), true)()
+```
+
 # How to get side dash animations by yourself
 If you want to get the side dash animations in your game:
 1. Go to the ROBLOX console by either typing `/console` in chat, or just click on the `F9` key.
