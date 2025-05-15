@@ -1,8 +1,4 @@
-# CFrame is recommended
-
-Edit the settings in the code if you want to change the side dashes.
-
-# Get side dash animations
+# How to get side dash animations by yourself
 If you want to get the side dash animations in your game:
 1. Go to the ROBLOX console by either typing `/console` in chat, or just click on the `F9` key.
 2. Now, side dash and then execute this immediately (you have to run this for both left and right side dashes):
