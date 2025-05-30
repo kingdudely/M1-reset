@@ -40,11 +40,6 @@ local settings = {
     },
 }
 
---[[
-    
-    
-]]
-
 if not settings.animations then
     StarterGui:SetCore("SendNotification", {
         Title = "Dash animations not found",
