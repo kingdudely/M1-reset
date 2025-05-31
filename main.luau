@@ -63,8 +63,7 @@ local function play(id, speed)
 	Animation.AnimationId = "rbxassetid://" .. tostring(id):match("%d+")
 
 	local loaded = Animator:LoadAnimation(Animation)
-
-	loaded:Play(0.1, 1, speed or 1)
+	loaded:Play(nil, nil, speed or 1) -- 0.1, 1
 
 	return loaded
 end
